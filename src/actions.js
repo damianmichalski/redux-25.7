@@ -14,6 +14,13 @@ export default function addComment(text) {
     }
 }
 
+export function removeComment(id) {
+    return {
+        type: REMOVE_COMMENT,
+        id
+    }
+}
+
 export function editComment(id, text) {
     return {
         type: EDIT_COMMENT,
