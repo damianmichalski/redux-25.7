@@ -5,7 +5,6 @@ import {THUMB_UP_COMMENT} from './actions';
 import {THUMB_DOWN_COMMENT} from './actions';
 
 
-
 function comments(state = [], action) {
 
   function modifyThumbs(state, toAdd) {
@@ -31,7 +30,10 @@ function comments(state = [], action) {
     case EDIT_COMMENT:
       return state.map(comment => {
         if (comment.id === action.id) {
-          comment.text = action.text;
+          return {
+            ...comment,
+            text: action.text
+          }
         }
         return comment;
       });
