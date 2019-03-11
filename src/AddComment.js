@@ -1,15 +1,5 @@
 import React from 'react';
 
-// const AddComment = ({text, addComment}) =>
-//
-//   <form>
-//     <input className="text">{text}</input>
-//     {/*<button onClick={() => addComment(document.querySelector('.text').value)} type='button'>Add comment</button>*/}
-//     <button onClick={() => addComment(this.text)} type='button'>Add comment</button>
-//   </form>;
-//
-// export default AddComment;
-
 
 class AddComment extends React.Component {
   constructor(props) {
@@ -17,23 +7,26 @@ class AddComment extends React.Component {
     this.state = {
       message: ""
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
+  handleChange(e){
+    this.setState({
+      value: e.target.value
+    })
+  }
+
   onSubmitHandler(event) {
-    const passInput = this.refs.pass;
-    if (passInput.value.length < 5) {
-      event.preventDefault();
-      this.setState({ message: "Password should be at least 5 chars long." });
-    } else {
-      this.setState({ message: "Comment added! " + passInput.value });
-    }
+    event.preventDefault();
+    this.props.addComment(this.state.value);
   }
   render() {
     return (
-        <form >
+        <form onSubmit={this.onSubmitHandler} >
           <label>
-            Comment: <input type="text" ref="pass" />
+            Comment: <input type={'text'} onChange={this.handleChange}/>
           </label>
-          <button onClick={this.onSubmitHandler.bind(this)} type='button'>Add comment</button>
+          <button type={'submit'}>Add comment</button>
           <p>{this.state.message}</p>
         </form>
     );

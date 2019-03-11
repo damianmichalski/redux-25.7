@@ -10,7 +10,7 @@ export default function addComment(text) {
     return {
         type: ADD_COMMENT,
         id: uuid.v4(),
-        text
+        text: text
     }
 }
 
